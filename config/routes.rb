@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
-  resources :games
+  resources :games do
+    resources :posts
+  end
   resources :campaigns do
     get :join
   end

@@ -10,6 +10,19 @@
   %b Campaign:
   = @game.campaign
 
+%h3 Posts
+%table.table.table-bordered
+  %tr
+    %th User
+    %th Comment
+  - @game.posts.each do |post|
+    %tr
+      %td= post.user
+      %td= post.content
+
+
+= link_to 'Add new post', new_game_post_path(@game)
+
 = link_to 'Edit', edit_game_path(@game)
 \|
 = link_to 'Back', games_path

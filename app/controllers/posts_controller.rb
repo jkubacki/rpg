@@ -1,20 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-
-  # GET /posts
-  # GET /posts.json
-  def index
-    @posts = Post.all
-  end
-
-  # GET /posts/1
-  # GET /posts/1.json
-  def show
-  end
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # GET /posts/new
   def new
+    @game = Game.find(params[:game_id])
     @post = Post.new
+    @post.game = @game
   end
 
   # GET /posts/1/edit
@@ -25,11 +16,12 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @game = Game.find(params[:game_id])
+    @post.game = @game
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to @game, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @game }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -69,6 +61,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id, :game_id)
+      params.require(:post).permit(:content, :user_id)
     end
 end
