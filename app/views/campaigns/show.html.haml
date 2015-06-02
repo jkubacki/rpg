@@ -13,11 +13,19 @@
 %p
   = link_to 'Join', campaign_join_path(@campaign)
 
-%table.table.table-striped
+%h3 Our fuckers
+%table.table.table-bordered
   - @campaign.users.each do |user|
     %tr
       %td
         = user.name
+
+%h3 Our games
+%table.table.table-bordered
+  - @campaign.games.each do |game|
+    %tr
+      %td
+        = link_to game.name, game
 
 = link_to 'Edit', edit_campaign_path(@campaign)
 \|
