@@ -1,6 +1,12 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
 
+  def join
+    @campaign = Campaign.find(params[:campaign_id])
+    @campaign.users << current_user if current_user.present?
+    redirect_to @campaign, notice: "You're in"
+  end
+
   # GET /campaigns
   # GET /campaigns.json
   def index

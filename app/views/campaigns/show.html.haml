@@ -10,6 +10,9 @@
   %b User:
   = @campaign.user
 
+%p
+  = link_to 'Join', campaign_join_path(@campaign)
+
 = link_to 'Edit', edit_campaign_path(@campaign)
 \|
 = link_to 'Back', campaigns_path
