@@ -1,13 +1,11 @@
 %h1 Listing campaigns
 
-%table
+%table.table
   %thead
     %tr
       %th Name
       %th Description
       %th User
-      %th
-      %th
       %th
 
   %tbody
@@ -16,9 +14,11 @@
         %td= campaign.name
         %td= campaign.description
         %td= campaign.user
-        %td= link_to 'Show', campaign
-        %td= link_to 'Edit', edit_campaign_path(campaign)
-        %td= link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          .btn-group
+            = link_to 'Show', campaign, class: 'btn btn-default'
+            = link_to 'Edit', edit_campaign_path(campaign), class: 'btn btn-primary'
+            = link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
