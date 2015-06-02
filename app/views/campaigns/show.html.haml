@@ -13,6 +13,12 @@
 %p
   = link_to 'Join', campaign_join_path(@campaign)
 
+%table.table.table-striped
+  - @campaign.users.each do |user|
+    %tr
+      %td
+        = user.name
+
 = link_to 'Edit', edit_campaign_path(@campaign)
 \|
 = link_to 'Back', campaigns_path

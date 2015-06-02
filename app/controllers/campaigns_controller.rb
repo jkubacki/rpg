@@ -3,8 +3,12 @@ class CampaignsController < ApplicationController
 
   def join
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.users << current_user if current_user.present?
-    redirect_to @campaign, notice: "You're in"
+    if @campaign.users.include? current_user
+      redirect_to @campaign, alert: "You're already in"
+    else
+      @campaign.users << current_user if current_user.present?
+      redirect_to @campaign, notice: "You're in"
+    end
   end
 
   # GET /campaigns
